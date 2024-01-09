@@ -1,28 +1,45 @@
-import React, { useState } from 'react'
-import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
+import React, {useEffect, useState} from 'react'
+import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap'
 
 
-export default function ModalApp({ modal, toggle, users, setUsers }) {
-
+export default function ModalApp({modal, toggle, users, setUsers, editId}) {
     const [firstname, setFirstname] = useState("")
-   
+    const [type, setType] = useState("open")
 
-
-    const addUser = (e)  => {
-        e.preventDefault();
-        let paylod = {
-            firstname,   
+    useEffect(() => {
+        if (!!editId) {
+            const user = users.find(item => item.id === editId)
+            if (user) {
+                setFirstname(user.firstname)
+                setType(user.type)
+            }
         }
-        setUsers([...users, {...paylod}])
-        toggle()
+    }, [editId]);
+
+    const addUser = (e) => {
+        e.preventDefault();
+        if (!!editId) {
+            if (!!users.find(item => item.id === editId)) {
+                users.find(item => item.id === editId).firstname = firstname
+                users.find(item => item.id === editId).type = type
+                const newUsers = [...users]
+                setUsers(newUsers)
+                toggle("")
+                setFirstname("")
+                setType("")
+            }
+        } else {
+            let paylod = {
+                id: users.length + 1,
+                firstname: firstname,
+                type: type
+            }
+            setUsers([...users, {...paylod}])
+            toggle()
+            setFirstname("")
+            setType("")
+        }
     }
-
-    const changeFisrt = (e) => {
-        setFirstname(e.target.value)
-
-    }
- 
-
 
 
     return (
@@ -33,21 +50,26 @@ export default function ModalApp({ modal, toggle, users, setUsers }) {
             <ModalBody>
                 <div>
                     <form onSubmit={addUser} id="form">
-                        <input type="text" placeholder='FirstName' onChange={changeFisrt} className='form-control my-3' required />
-                        <select className='btn btn-info' name="" id="">
-                            <option value="" hidden>Select Name</option>
-                            <option value="">Open</option>
-                            <option value="">Pending</option>
-                            <option value="">Inproge</option>
-                            <option value="">Progress</option>
+                        <input
+                            type="text"
+                            placeholder='Firstname'
+                            onChange={e => setFirstname(e.target.value)}
+                            className='form-control my-3'
+                            value={firstname}
+                            required
+                        />
+                        <select className='btn btn-info' value={type} onChange={e => setType(e.target.value)}>
+                            <option value="open">Open</option>
+                            <option value="pending">Pending</option>
+                            <option value="inproge">Inproge</option>
+                            <option value="progress">Progress</option>
                         </select>
-                       
-                        
                     </form>
                 </div>
             </ModalBody>
             <ModalFooter>
-                <button type='submit' form='form' className='btn btn-prima ry'>Add User</button>
+                <button type='submit' form='form'
+                        className='btn btn-prima ry'>{!!editId ? "Edit User" : "Add User"}</button>
             </ModalFooter>
         </Modal>
     )
