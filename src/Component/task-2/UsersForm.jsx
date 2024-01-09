@@ -93,21 +93,21 @@ export default function UsersForm() {
                 <div className=" card col-2 offset-1 mt-5">
                  
                    
-                        <thead className="card-header">
+                        <div className="card-header">
                             <tr>
                                 <th>Open</th>                            
                             </tr>
-                        </thead>
+                        </div>
 
-                        <tbody className="d-flex my-4">
+                        <div className="my-4">
                             {users.map((item, index) => {
                                 return (
-                                    <tr key={index}>
+                                    <tr key={index}>    
                                         
-                                        <td >{item.firstname}</td>
+                                        <td>{item.firstname}</td>
                                         
                                     
-                                        <td className="">
+                                        <td className="d-flex">
                                         <button className="btn btn-info mx-2 " onClick={() => editUser(index, users, setUsers)}>
                                                 edit
                                             </button>
@@ -120,7 +120,7 @@ export default function UsersForm() {
                                 );
 
                             })}
-                        </tbody>
+                        </div>
                         <div className="card-footer">
                         <button onClick={setModal} className="btn btn-primary">Add users</button>        
                         </div>                                               
@@ -130,12 +130,12 @@ export default function UsersForm() {
                 <div className="card col-2 offset-1 mt-5">
                  
                    
-                        <thead className="card-header">
+                        <div className="card-header">
                             <tr>
                                 <th>Open</th>                            
                             </tr>
-                        </thead>
-                        <tbody className="d-flex my-4">
+                        </div>
+                        <div className="my-4">
                             {users1.map((item, index) => {
                                 return (
                                     <tr key={index}>
@@ -156,7 +156,7 @@ export default function UsersForm() {
                                 );
 
                             })}
-                        </tbody>
+                        </div>
                         <div className="card-footer">
                         <button onClick={setModal1} className="btn btn-primary">Add users</button>        
                         </div>                                               
@@ -167,12 +167,12 @@ export default function UsersForm() {
                 <div className="card col-2 offset-1 mt-5">
                  
                    
-                        <thead className="card-header">
+                        <div className="card-header">
                             <tr>
                                 <th>Inproge</th>                            
                             </tr>
-                        </thead>
-                        <tbody className="d-flex my-4">
+                        </div>
+                        <div className="my-4">
                             {users2.map((item, index) => {
                                 return (
                                     <tr key={index}>
@@ -180,7 +180,7 @@ export default function UsersForm() {
                                         <td>{item.firstname}</td>
                                         
                                     
-                                        <td>
+                                        <td className="d-flex">
                                         <button className="btn btn-info mx-2" onClick={() => editUser2(index, users, setUsers2)}>
                                                 edit
                                             </button>
@@ -192,7 +192,7 @@ export default function UsersForm() {
                                     </tr>
                                 );
                             })}
-                        </tbody>
+                        </div>
                         <div className="card-footer">
 
                         <button onClick={setModal2} className="btn btn-primary">Add users</button>                                                       
@@ -201,12 +201,12 @@ export default function UsersForm() {
                 <div className="card col-2 offset-1 mt-5">
                  
                    
-                        <thead className="card-header">
+                        <div className="card-header">
                             <tr>
                                 <th>Progress</th>                            
                             </tr>
-                        </thead>
-                        <tbody className="d-flex my-4">
+                        </div>
+                        <div className="my-4">
                             {users3.map((item, index) => {
                                 return (
                                     <tr key={index}>
@@ -214,7 +214,7 @@ export default function UsersForm() {
                                         <td>{item.firstname}</td>
                                         
                                     
-                                        <td>
+                                        <td className="d-flex">
                                         <button className="btn btn-info mx-2" onClick={() => editUser3(index, users, setUsers3)}>
                                                 edit
                                             </button>
@@ -226,7 +226,7 @@ export default function UsersForm() {
                                     </tr>
                                 );
                             })}
-                        </tbody>
+                        </div>
                         <div className="card-footer">
 
                         <button onClick={setModal3} className="btn btn-primary">Add users</button>                                                       
