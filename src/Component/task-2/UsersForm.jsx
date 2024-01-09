@@ -132,7 +132,7 @@ export default function UsersForm() {
                    
                         <div className="card-header">
                             <tr>
-                                <th>Open</th>                            
+                                <th>Pending</th>                            
                             </tr>
                         </div>
                         <div className="my-4">
